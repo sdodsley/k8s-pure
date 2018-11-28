@@ -9,15 +9,11 @@ sudo apt-get install ansible <br />
 sudo snap install helm --classic
 
 ## Pull Kubespray and Copy Content
-cd /tmp <br />
-git clone https://github.com/kubernetes-sigs/kubespray.git <br />
-sudo cp -rf /tmp/kubespray/. /etc/ansible/ <br />
+git clone https://github.com/kubernetes-sigs/kubespray.git /etc/ansible/ <br />
 sudo pip install -r requirements.txt <br />
 
 ## Pull k8s-pure
-cd /tmp <br />
-git clone https://github.com/dan-pure/k8s-pure.git <br />
-sudo cp -rf /tmp/k8s-pure/. /etc/ansible/  <br />
+git clone https://github.com/dan-pure/k8s-pure.git /etc/ansible/ <br />
 
 # Deploy and Prepare VM Guests
 ansible-playbook -i inventory/hosts.ini deploy_pure_kubernetes.yml --ask-pass --ask-become-pass
