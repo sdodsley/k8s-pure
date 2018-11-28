@@ -5,7 +5,7 @@ sudo apt-get install software-properties-common <br />
 sudo apt-add-repository --yes --update ppa:ansible/ansible <br />
 sudo apt-get install ansible <br />
 
-## Install Halm Client
+## Install Helm Client
 sudo snap install helm --classic
 
 ## Pull Kubespray and Copy Content
