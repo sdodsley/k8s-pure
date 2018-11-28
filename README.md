@@ -1,4 +1,9 @@
 # Prepare Deployment Hosts
+## Required for vSphere Integration with Ansible
+sudo apt-get install python-pip python-dev build-essential <br />
+pip install --install pyvmomi <br />
+sudo pip install -r requirements.txt <br />
+
 ## Install Ansible
 sudo apt-get update <br />
 sudo apt-get install software-properties-common <br />
@@ -11,8 +16,6 @@ sudo snap install helm --classic
 ## Kubespray
 git clone https://github.com/kubernetes-sigs/kubespray.git /tmp/kubespray <br />
 sudo cp -rf /tmp/kubespray/. /etc/ansible/ <br />
-sudo apt-get install python-pip python-dev build-essential <br />
-sudo pip install -r requirements.txt <br />
 
 ## k8s-pure
 git clone https://github.com/dan-pure/k8s-pure.git /tmp/k8s-pure <br />
