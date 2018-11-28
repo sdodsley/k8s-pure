@@ -1,4 +1,4 @@
-# Prepare deployment hosts
+# Prepare Deployment Hosts
 ## Install Ansible
 sudo apt-get update <br />
 sudo apt-get install software-properties-common <br />
@@ -11,7 +11,7 @@ sudo snap install helm --classic
 # Deploy and Prepare VM Guests
 ansible-playbook -i inventory/hosts.ini deploy_pure_kubernetes.yml --ask-pass --ask-become-pass
 
-# Deploy kubernetes using kubespray
+# Deploy Kubernetes using Kubespray
 ansible-playbook -i inventory/hosts.ini cluster.yml  -b -K
 
 
