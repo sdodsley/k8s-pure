@@ -15,6 +15,7 @@ sudo snap install helm --classic
 
 ## Kubespray
 Note: Please review kubespray documentation to customise for your deployment <br />
+kubespray guide - https://github.com/kubernetes-sigs/kubespray <br /> <br />
 git clone https://github.com/kubernetes-sigs/kubespray.git /tmp/kubespray <br />
 sudo cp -rf /tmp/kubespray/. /etc/ansible/ <br />
 
