@@ -8,12 +8,12 @@ sudo apt-get install ansible <br />
 ## Install Helm Client
 sudo snap install helm --classic
 
-## Pull Kubespray and Copy Content
+## Kubespray
 git clone https://github.com/kubernetes-sigs/kubespray.git /tmp/kubespray <br />
 sudo cp -rf /tmp/kubespray/. /etc/ansible/ <br />
 sudo pip install -r requirements.txt <br />
 
-## Pull k8s-pure
+## k8s-pure
 git clone https://github.com/dan-pure/k8s-pure.git /tmp/k8s-pure <br />
 sudo cp -rf /tmp/k8s-pure/. /etc/ansible/  <br />
 
