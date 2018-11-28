@@ -23,5 +23,5 @@ ansible-playbook -i inventory/hosts.ini deploy_pure_kubernetes.yml --ask-pass --
 # Deploy Kubernetes using Kubespray
 ansible-playbook -i inventory/hosts.ini --become --become-user=root cluster.yml
 
-# Complete Post Tasks and install Pure Service Orchestrator
+# Complete Post Tasks and Install Pure Service Orchestrator
 sudo ansible-playbook post_pure_kubernetes.yml -e 'kubeconfig=/etc/ansible/inventory/artifacts/admin.conf' -e 'psoconfig=/etc/ansible/inventory/pso_config.yml'
