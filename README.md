@@ -11,7 +11,7 @@ sudo snap install helm --classic
 ## Pull Kubespray and Copy Content
 cd /tmp <br />
 git clone https://github.com/kubernetes-sigs/kubespray.git <br />
-sudo cp -rf /tmp/kubespray/. /etc/ansible-1/ <br />
+sudo cp -rf /tmp/kubespray/. /etc/ansible/ <br />
 sudo pip install -r requirements.txt <br />
 
 # Deploy and Prepare VM Guests
