@@ -1,0 +1,29 @@
+---
+# vSphere Environment
+vsphere_host: 10.101.0.110
+vsphere_user: "administrator@melblab.internal"
+vsphere_datacenter: "EQ-ME1"
+vsphere_cluster: "LAB"
+vsphere_datastore: "pstg-esx-vmfs-02"
+vsphere_folder: "/k8s"
+
+# Guest VM Configuration
+guest_id: ubuntu64Guest
+guest_memory: 4096
+guest_vcpu: 2
+guest_template: k8stemplate
+guest_user: pureadmin
+guest_user_comment: Pure Admin Account
+
+# Guest Management Networks
+guest_network: mgmt_nw_101
+guest_netmask: 255.255.255.0
+guest_gateway: 10.101.0.1
+guest_dns_server: 10.101.0.120
+guest_domain_name: melblab.internal
+
+# Guest iSCSI Networks
+iscsi_a_network: iscsi_a_201
+iscsi_a_netmask: 255.255.255.0
+iscsi_b_network: iscsi_b_202
+iscsi_b_netmask: 255.255.255.0

@@ -1,0 +1,87 @@
+---
+# get date
+- set_fact: creationdate="{{lookup('pipe','date "+%Y/%m/%d %H:%M"')}}"
+
+- name: Build VM
+  vmware_guest:
+    hostname: '{{ vsphere_host }}'
+    username: '{{ vsphere_user }}'
+    password: '{{ vsphere_password }}'
+    validate_certs: no
+    datacenter: '{{ vsphere_datacenter }}'
+    cluster: '{{ vsphere_cluster }}'
+    folder: '{{ vsphere_folder }}'
+    name: '{{ inventory_hostname }}'
+    state: poweredon
+    guest_id: '{{ guest_id }}'
+    annotation: "{{ creationdate }}"
+    disk:
+    - size_gb: 40
+      type: thin
+      datastore: '{{ vsphere_datastore }}'
+    networks:
+    - name: '{{ guest_network }}'
+      ip: '{{ ip }}'
+      netmask: '{{ guest_netmask }}'
+      gateway: '{{ guest_gateway }}'
+    - name: '{{ iscsi_a_network }}'
+      ip: '{{ iscsi_a_ip }}'
+      netmask: '{{ iscsi_a_netmask }}'
+    - name: '{{ iscsi_b_network }}'
+      ip: '{{ iscsi_b_ip }}'
+      netmask: '{{ iscsi_b_netmask }}'
+    hardware:
+      memory_mb: '{{ guest_memory }}'
+      num_cpus: '{{ guest_vcpu }}'
+    customization:
+      dns_servers:
+      - '{{ guest_dns_server }}'
+      domain : '{{ guest_domain_name }}'
+      hostname: '{{ inventory_hostname }}'
+    template: '{{ guest_template }}'
+    wait_for_ip_address: yes
+  delegate_to: localhost
+  
+- name: add to /etc/hosts file
+  lineinfile:
+    dest: /etc/hosts
+    line: '{{ ip }} {{ inventory_hostname }}'
+  with_items: '{{ play_hosts }}'
+  when: "hostvars[item].inventory_hostname == inventory_hostname"
+  delegate_to: localhost
+
+- name: accept new ssh fingerprints
+  shell: ssh-keyscan {{ ip }},{{ inventory_hostname }} >> ~/.ssh/known_hosts
+  with_items: '{{ play_hosts }}'
+  when: "hostvars[item].inventory_hostname == inventory_hostname"
+  delegate_to: localhost
+ 
+- name: Make sure we have a 'wheel' group
+  group:
+    name: wheel
+    state: present
+
+- name: Allow 'wheel' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: Add sudoers users to wheel group
+  user:
+    name: '{{ guest_user }}'
+    groups: wheel
+    append: yes
+
+- name: Set authorized key taken from file
+  authorized_key:
+    user: '{{ guest_user }}'
+    state: present
+    key: "{{ lookup('file', '/home/pureadmin/.ssh/id_rsa.pub') }}"
+
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+    state: latest  

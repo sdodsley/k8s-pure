@@ -1,0 +1,7 @@
+---
+arrays:
+  FlashArrays:
+    - MgmtEndPoint: "10.101.0.107"
+      APIToken: "a5fd4f81-054a-12e2-721f-521a34c0f3bb"
+      Labels:
+         env: "lab"

@@ -1,0 +1,12 @@
+---
+- name: Deploy Kubernetes Virtual Nodes
+  hosts: vmware-guests 
+  gather_facts: False
+  remote_user: pureadmin
+  become: yes
+  vars_prompt:
+  - name: "vsphere_password"
+    prompt: "Please provide vSphere Password"
+  roles:
+  - deploy_vmware_guest
+  - kubernetes-preinstall  

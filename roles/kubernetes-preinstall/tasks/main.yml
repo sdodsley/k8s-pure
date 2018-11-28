@@ -1,0 +1,33 @@
+---
+- name: Install base required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - open-iscsi
+    - multipath-tools
+    - nfs-common
+    - apt-transport-https
+    - curl
+- name: Create Multipath Directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - /etc/multipath
+- name: Create a multipath.conf
+  file:
+    path: /etc/multipath.conf
+    state: touch
+    mode: 0755
+- name: Remove IQN
+  lineinfile:
+    path: /etc/iscsi/initiatorname.iscsi
+    state: absent
+    regexp: 'InitiatorName=iqn.1993-08.org.debian'
+- name: Create IQN
+  lineinfile:
+    dest: /etc/iscsi/initiatorname.iscsi
+    state: present
+    line: InitiatorName=iqn.1993-08.org.debian:01:{{ inventory_hostname }}
