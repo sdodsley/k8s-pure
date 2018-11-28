@@ -8,6 +8,12 @@ sudo apt-get install ansible <br />
 ## Install Halm
 sudo snap install helm --classic
 
+## Pull Kubespray and Copy Content
+cd /tmp
+git clone https://github.com/kubernetes-sigs/kubespray.git
+sudo cp -rf /tmp/kubespray/. /etc/ansible-1/
+sudo pip install -r requirements.txt
+
 # Deploy and Prepare VM Guests
 ansible-playbook -i inventory/hosts.ini deploy_pure_kubernetes.yml --ask-pass --ask-become-pass
 
