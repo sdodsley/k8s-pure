@@ -11,6 +11,7 @@ sudo snap install helm --classic
 ## Kubespray
 git clone https://github.com/kubernetes-sigs/kubespray.git /tmp/kubespray <br />
 sudo cp -rf /tmp/kubespray/. /etc/ansible/ <br />
+sudo apt-get install python-setuptools python-dev build-essential <br />
 sudo pip install -r requirements.txt <br />
 
 ## k8s-pure
