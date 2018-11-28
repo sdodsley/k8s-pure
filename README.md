@@ -1,9 +1,9 @@
 # Prepare deployment hosts
 ## Install Ansible
-sudo apt-get update
-sudo apt-get install software-properties-common
-sudo apt-add-repository --yes --update ppa:ansible/ansible
-sudo apt-get install ansible
+sudo apt-get update <br />
+sudo apt-get install software-properties-common <br />
+sudo apt-add-repository --yes --update ppa:ansible/ansible <br />
+sudo apt-get install ansible <br />
 
 ## Install Halm
 sudo snap install helm --classic
