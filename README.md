@@ -14,6 +14,7 @@ sudo apt-get install ansible <br />
 sudo snap install helm --classic
 
 ## Kubespray
+Note: Please review kubespray documentation to customise for your deployment <br />
 git clone https://github.com/kubernetes-sigs/kubespray.git /tmp/kubespray <br />
 sudo cp -rf /tmp/kubespray/. /etc/ansible/ <br />
 
