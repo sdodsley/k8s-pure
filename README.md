@@ -16,9 +16,8 @@ sudo pip install -r requirements.txt <br />
 
 ## Pull k8s-pure
 cd /tmp <br />
-git clone https://github.com/dan-pure/k8s-pure.git
-sudo cp -rf /tmp/k8s-pure/. /etc/ansible/ 
-sudo pip install -r requirements.txt 
+git clone https://github.com/dan-pure/k8s-pure.git <br />
+sudo cp -rf /tmp/k8s-pure/. /etc/ansible/  <br />
 
 # Deploy and Prepare VM Guests
 ansible-playbook -i inventory/hosts.ini deploy_pure_kubernetes.yml --ask-pass --ask-become-pass
