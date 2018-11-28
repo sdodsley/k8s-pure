@@ -21,7 +21,7 @@ sudo cp -rf /tmp/k8s-pure/. /etc/ansible/  <br />
 ansible-playbook -i inventory/hosts.ini deploy_pure_kubernetes.yml --ask-pass --ask-become-pass
 
 # Deploy Kubernetes using Kubespray
-ansible-playbook -i inventory/hosts.ini cluster.yml  -b -K
+ansible-playbook -i inventory/hosts.ini cluster.yml  -b -v
 
 # Complete Post Tasks and install Pure Service Orchestrator
 sudo ansible-playbook post_pure_kubernetes.yml -e 'kubeconfig=/etc/ansible/inventory/artifacts/admin.conf' -e 'psoconfig=/etc/ansible/inventory/pso_config.yml'
